@@ -68,7 +68,7 @@ body {
 /* Avatar = a big through-hole pad */
 .avatar-wrap {
   position: relative; flex-shrink: 0;
-  width: 104px; height: 104px;
+  width: 170px; height: 170px;
   display: flex; align-items: center; justify-content: center;
 }
 /* outer copper ring */
@@ -89,7 +89,7 @@ body {
 }
 /* the SVG orbital energy dot is injected via JS */
 .avatar {
-  width: 84px; height: 84px;
+  width: 150px; height: 150px;
   border-radius: 50%;
   border: 2px solid var(--copper);
   background: var(--bg-card2);
@@ -104,27 +104,27 @@ body {
 /* name — no CSS animation, canvas handles the glow */
 .h-name {
   font-family: 'Orbitron', monospace;
-  font-size: clamp(20px, 4.5vw, 38px);
+  font-size: clamp(30px, 4.5vw, 50px);
   font-weight: 900;
   color: var(--ink);
   letter-spacing: 0px; line-height: 1;
   margin-bottom: 8px;
 }
 
-.header-info { flex: 1; min-width: 220px; padding-top: 4px; }
+.header-info { flex: 1; min-width: 220px; padding-top: 30px; }
 .eyebrow {
-  font-size: 9px; letter-spacing: 4px; color: var(--ink4);
+  font-size: 14px; letter-spacing: 4px; color: var(--ink4);
   text-transform: uppercase; margin-bottom: 6px;
 }
 .h-name .acc { color: var(--led); }
 .h-role {
-  font-size: 10px; letter-spacing: 3px; color: var(--ink3);
+  font-size: 15px; letter-spacing: 3px; color: var(--ink3);
   text-transform: uppercase; margin-bottom: 16px;
 }
 .links { display: flex; flex-wrap: wrap; gap: 8px; }
 .link-btn {
   display: inline-flex; align-items: center; gap: 6px;
-  font-size: 10px; letter-spacing: 1px;
+  font-size: 15px; letter-spacing: 1px;
   padding: 5px 13px;
   border: 1px solid var(--copper-dim);
   background: var(--bg-card);
@@ -145,7 +145,7 @@ body {
    SECTION LABEL
 ══════════════════════════════ */
 .sec {
-  font-size: 9px; letter-spacing: 4px; color: var(--ink3);
+  font-size: 12px; letter-spacing: 4px; color: var(--ink3);
   text-transform: uppercase;
   display: flex; align-items: center; gap: 10px;
   margin-bottom: 20px;
@@ -173,7 +173,7 @@ body {
   padding: 16px 20px;
   border-radius: 0 2px 2px 0;
   margin-bottom: 40px;
-  font-size: 12px; color: var(--ink2); line-height: 1.9;
+  font-size: 15px; color: var(--ink2); line-height: 1.9;
   position: relative;
 }
 /* copper corner marks */
@@ -320,7 +320,6 @@ body {
   border-radius: 3px;
   padding: 15px 18px 15px 22px;
   position: relative;
-  /* solder mask green tint */
   box-shadow: inset 0 0 40px rgba(45,128,80,.04);
 }
 
@@ -381,21 +380,21 @@ body {
 
 /* chip content */
 .level-lbl {
-  font-size: 8px; letter-spacing: 3.5px; color: var(--ink4);
+  font-size: 15px; letter-spacing: 3.5px; color: var(--ink4);
   text-transform: uppercase; margin-bottom: 4px;
 }
 .node-row.lit .level-lbl { color: var(--led); }
 
 .chip-title {
   font-family: 'Orbitron', monospace;
-  font-size: 12px; font-weight: 700;
+  font-size: 17px; font-weight: 700;
   color: var(--ink); letter-spacing: .5px;
   margin-bottom: 7px; line-height: 1.3;
 }
 .node-row.lit .chip-title { color: var(--led-dim); }
 
 .chip-desc {
-  font-size: 10.5px; color: var(--ink2); line-height: 1.85;
+  font-size: 15px; color: var(--ink2); line-height: 1.85;
   margin-bottom: 13px;
 }
 .node-row.lit .chip-desc { color: var(--ink); }
@@ -410,7 +409,7 @@ body {
 
 .sk-col { flex: 1; min-width: 150px; }
 .sk-lbl {
-  font-size: 8px; letter-spacing: 2.5px;
+  font-size: 16px; letter-spacing: 2.5px;
   text-transform: uppercase; margin-bottom: 7px;
 }
 .sk-lbl.g { color: var(--ink3); }
@@ -419,7 +418,7 @@ body {
 .tag {
   display: inline-block;
   font-family: 'Share Tech Mono', monospace;
-  font-size: 9.5px; letter-spacing: .5px;
+  font-size: 11px; letter-spacing: .5px;
   padding: 2px 9px; margin: 2px 2px 0 0;
   border-radius: 2px;
 }
@@ -427,16 +426,19 @@ body {
   background: var(--bg-card2);
   border: 1px solid var(--copper-faint);
   color: var(--ink2);
+  font-size: 12px
 }
 .tag-s {
   background: #fdf5ec;
   border: 1px solid #f0d0a0;
   color: #885500;
+  font-size: 12px
 }
 .tag-led {
   background: var(--led-bg);
   border: 1px solid var(--led-border);
   color: var(--led-dim);
+  font-size: 12px
 }
 
 /* ══════════════════════════════
@@ -505,12 +507,12 @@ body {
 }
 .proj-name {
   font-family: 'Orbitron', monospace;
-  font-size: 11px; font-weight: 700;
+  font-size: 16px; font-weight: 700;
   color: var(--ink); letter-spacing: 1px; margin-bottom: 8px;
 }
 .proj-card.acc .proj-name { color: var(--led-dim); }
 .proj-desc {
-  font-size: 10.5px; color: var(--ink2); line-height: 1.8;
+  font-size: 14px; color: var(--ink2); line-height: 1.8;
   margin-bottom: 10px;
 }
 
