@@ -1,0 +1,600 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── PALETTE ── */
+:root {
+  /* backgrounds */
+  --bg-page:    #ffffff;
+  --bg-card:    #f7faf8;
+  --bg-card2:   #f0f7f3;
+  --bg-led:     #fff8f2;
+
+  /* copper traces */
+  --copper:     #2d8050;
+  --copper-dim: #a8d4b8;
+  --copper-faint: #d4ead9;
+
+  /* text */
+  --ink:        #0d1f14;
+  --ink2:       #1e4d30;
+  --ink3:       #3d7a55;
+  --ink4:       #6aaa85;
+
+  /* accent — the ONE orange LED */
+  --led:        #e85c00;
+  --led2:       #f28230;
+  --led-dim:    #c04000;
+  --led-bg:     #fff3ec;
+  --led-border: #f5b080;
+}
+
+body {
+  background: var(--bg-page);
+  color: var(--ink);
+  font-family: 'Share Tech Mono', monospace;
+  min-height: 100vh;
+}
+
+/* ── PCB GRID BACKGROUND ── */
+.pcb-page {
+  min-height: 100vh;
+  padding: 44px 28px 88px;
+  background-color: var(--bg-page);
+  background-image:
+    repeating-linear-gradient(0deg,   rgba(45,128,80,.08) 0, rgba(45,128,80,.08) 1px, transparent 1px, transparent 40px),
+    repeating-linear-gradient(90deg,  rgba(45,128,80,.08) 0, rgba(45,128,80,.08) 1px, transparent 1px, transparent 40px);
+}
+
+.page { max-width: 880px; margin: 0 auto; }
+
+/* ══════════════════════════════
+   HEADER
+══════════════════════════════ */
+.header {
+  display: flex; align-items: flex-start; gap: 28px;
+  margin-bottom: 44px;
+  padding-bottom: 28px;
+  border-bottom: 2px solid var(--copper-dim);
+  flex-wrap: wrap;
+  position: relative;
+}
+/* copper trace decoration under header */
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -6px; left: 0; right: 0; height: 2px;
+  background: repeating-linear-gradient(90deg, var(--copper-faint) 0, var(--copper-faint) 12px, transparent 12px, transparent 18px);
+}
+
+/* Avatar = a big through-hole pad */
+.avatar-wrap {
+  position: relative; flex-shrink: 0;
+  width: 104px; height: 104px;
+  display: flex; align-items: center; justify-content: center;
+}
+/* outer copper ring */
+.avatar-wrap::before {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  border: 3px solid var(--copper-dim);
+  background: transparent;
+}
+/* orbital trace ring — almost invisible */
+.orbit-ring {
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+}
+/* the SVG orbital energy dot is injected via JS */
+.avatar {
+  width: 84px; height: 84px;
+  border-radius: 50%;
+  border: 2px solid var(--copper);
+  background: var(--bg-card2);
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+  position: relative;
+  z-index: 1;
+}
+/* avatar photo — no decorative ::after needed */
+
+/* name — no CSS animation, canvas handles the glow */
+.h-name {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(20px, 4.5vw, 38px);
+  font-weight: 900;
+  color: var(--ink);
+  letter-spacing: 0px; line-height: 1;
+  margin-bottom: 8px;
+}
+
+.header-info { flex: 1; min-width: 220px; padding-top: 4px; }
+.eyebrow {
+  font-size: 9px; letter-spacing: 4px; color: var(--ink4);
+  text-transform: uppercase; margin-bottom: 6px;
+}
+.h-name .acc { color: var(--led); }
+.h-role {
+  font-size: 10px; letter-spacing: 3px; color: var(--ink3);
+  text-transform: uppercase; margin-bottom: 16px;
+}
+.links { display: flex; flex-wrap: wrap; gap: 8px; }
+.link-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10px; letter-spacing: 1px;
+  padding: 5px 13px;
+  border: 1px solid var(--copper-dim);
+  background: var(--bg-card);
+  color: var(--ink2);
+  border-radius: 2px; text-decoration: none;
+  transition: color .2s, background .2s;
+  position: relative;
+}
+.link-btn:hover {
+  background: var(--bg-card2);
+  color: var(--ink);
+  animation: border-energy-green .8s ease-in-out infinite alternate;
+}
+.link-btn:hover i { color: var(--copper); }
+.link-btn i { font-size: 13px; color: var(--ink3); transition: color .2s; }
+
+/* ══════════════════════════════
+   SECTION LABEL
+══════════════════════════════ */
+.sec {
+  font-size: 9px; letter-spacing: 4px; color: var(--ink3);
+  text-transform: uppercase;
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 20px;
+}
+.sec::after { content: ''; flex: 1; height: 1px; background: var(--copper-faint); }
+/* pad dot before label */
+.sec .pad-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  border: 2px solid var(--copper);
+  background: var(--bg-card2); flex-shrink: 0;
+  position: relative;
+}
+.sec .pad-dot::after {
+  content: ''; position: absolute;
+  inset: 2px; border-radius: 50%; background: var(--copper);
+}
+
+/* ══════════════════════════════
+   SOBRE
+══════════════════════════════ */
+.sobre {
+  background: var(--bg-card);
+  border: 1px solid var(--copper-faint);
+  border-left: 4px solid var(--copper);
+  padding: 16px 20px;
+  border-radius: 0 2px 2px 0;
+  margin-bottom: 40px;
+  font-size: 12px; color: var(--ink2); line-height: 1.9;
+  position: relative;
+}
+/* copper corner marks */
+.sobre::before, .sobre::after {
+  content: '';
+  position: absolute;
+  width: 10px; height: 10px;
+}
+.sobre::before {
+  top: 6px; right: 6px;
+  border-top: 2px solid var(--copper-dim);
+  border-right: 2px solid var(--copper-dim);
+}
+.sobre::after {
+  bottom: 6px; right: 6px;
+  border-bottom: 2px solid var(--copper-dim);
+  border-right: 2px solid var(--copper-dim);
+}
+
+/* ══════════════════════════════
+   PCB CIRCUIT TIMELINE
+══════════════════════════════ */
+.circuit {
+  position: relative;
+  margin-bottom: 52px;
+  padding-left: 0;
+}
+
+/* THE VERTICAL COPPER TRACE */
+.v-trace {
+  position: absolute;
+  left: 24px; top: 20px; bottom: 20px;
+  width: 3px;
+  background: linear-gradient(180deg,
+    var(--copper-dim) 0%,
+    var(--copper) 30%,
+    var(--copper) 80%,
+    var(--led) 100%
+  );
+  z-index: 0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+/* static base glow */
+.v-trace::after {
+  content: '';
+  position: absolute;
+  inset: 0; border-radius: 2px;
+  box-shadow: 0 0 8px rgba(45,128,80,.25);
+}
+/* energy pulse travelling down */
+.v-trace::before {
+  content: '';
+  position: absolute;
+  left: -4px; right: -4px;
+  top: -60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(125,255,176,.0) 10%,
+    rgba(125,255,176,.95) 40%,
+    rgba(242,130,48,.95) 60%,
+    rgba(232,92,0,.7) 80%,
+    transparent 100%
+  );
+  filter: blur(2px);
+  animation: energy-flow 2.6s ease-in-out infinite;
+}
+@keyframes energy-flow {
+  0%   { top: -60px; opacity: 0; }
+  8%   { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* NODE ROW */
+.node-row {
+  display: flex; align-items: flex-start;
+  margin-bottom: 24px;
+  position: relative; z-index: 1;
+}
+
+/* LEFT SIDE: pad + horizontal trace */
+.node-left {
+  display: flex; align-items: center;
+  flex-shrink: 0; width: 80px;
+  padding-top: 16px;
+}
+
+/* ── THROUGH-HOLE PAD ── */
+.thpad {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 3px solid var(--copper);
+  background: var(--bg-card);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; position: relative;
+  /* the inner hole */
+  box-shadow: 0 0 0 1px var(--copper-dim);
+}
+/* drill hole */
+.thpad::before {
+  content: '';
+  position: absolute;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--copper-dim);
+}
+/* copper annular ring highlight */
+.thpad::after {
+  content: '';
+  position: absolute; inset: -5px; border-radius: 50%;
+  border: 1px solid var(--copper-faint);
+}
+
+/* lit pad = LED */
+.node-row.lit .thpad {
+  border-color: var(--led);
+  box-shadow: 0 0 0 1px var(--led-border), 0 0 14px rgba(232,92,0,.5), 0 0 30px rgba(232,92,0,.2);
+}
+.node-row.lit .thpad::before { background: var(--led); }
+.node-row.lit .thpad::after { border-color: var(--led-border); }
+
+/* HORIZONTAL TRACE from pad to chip */
+.h-trace {
+  height: 3px; width: 34px; flex-shrink: 0;
+  background: var(--copper);
+  position: relative;
+  /* via dot at end */
+}
+.h-trace::after {
+  content: '';
+  position: absolute; right: -4px; top: 50%; transform: translateY(-50%);
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--copper);
+}
+.node-row.lit .h-trace { background: var(--led); }
+.node-row.lit .h-trace::after { background: var(--led); }
+
+/* ── IC CHIP CARD ── */
+.chip {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1.5px solid var(--copper-dim);
+  border-radius: 3px;
+  padding: 15px 18px 15px 22px;
+  position: relative;
+  /* solder mask green tint */
+  box-shadow: inset 0 0 40px rgba(45,128,80,.04);
+}
+
+/* left edge trace bar */
+.chip::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 12px; bottom: 12px; width: 4px;
+  background: var(--copper);
+  border-radius: 0 2px 2px 0;
+}
+
+/* IC NOTCH top-right corner */
+.notch {
+  position: absolute;
+  top: 0; right: 0;
+  width: 18px; height: 18px;
+  background: var(--bg-page);
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  border-bottom: 1.5px solid var(--copper-dim);
+  border-left: 1.5px solid var(--copper-dim);
+}
+
+/* CHIP PINS — left side */
+.chip-pins {
+  position: absolute;
+  left: -12px; top: 20px;
+  display: flex; flex-direction: column; gap: 7px;
+}
+.pin {
+  width: 11px; height: 2.5px;
+  background: var(--copper);
+  border-radius: 0 1px 1px 0;
+  position: relative;
+}
+/* pad at pin tip */
+.pin::after {
+  content: '';
+  position: absolute; right: -4px; top: 50%; transform: translateY(-50%);
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--copper-dim);
+  border: 1px solid var(--copper);
+}
+
+/* lit variants */
+.node-row.lit .chip {
+  background: var(--led-bg);
+  border-color: var(--led-border);
+  box-shadow: inset 0 0 40px rgba(232,92,0,.05), 0 0 20px rgba(232,92,0,.08);
+}
+.node-row.lit .chip::before { background: var(--led); }
+.node-row.lit .notch {
+  border-color: var(--led-border);
+  background: var(--bg-page);
+}
+.node-row.lit .pin { background: var(--led); }
+.node-row.lit .pin::after { background: var(--led-border); border-color: var(--led); }
+
+/* chip content */
+.level-lbl {
+  font-size: 8px; letter-spacing: 3.5px; color: var(--ink4);
+  text-transform: uppercase; margin-bottom: 4px;
+}
+.node-row.lit .level-lbl { color: var(--led); }
+
+.chip-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 12px; font-weight: 700;
+  color: var(--ink); letter-spacing: .5px;
+  margin-bottom: 7px; line-height: 1.3;
+}
+.node-row.lit .chip-title { color: var(--led-dim); }
+
+.chip-desc {
+  font-size: 10.5px; color: var(--ink2); line-height: 1.85;
+  margin-bottom: 13px;
+}
+.node-row.lit .chip-desc { color: var(--ink); }
+
+/* skills inside chip */
+.chip-skills {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--copper-faint);
+}
+.node-row.lit .chip-skills { border-color: var(--led-border); }
+
+.sk-col { flex: 1; min-width: 150px; }
+.sk-lbl {
+  font-size: 8px; letter-spacing: 2.5px;
+  text-transform: uppercase; margin-bottom: 7px;
+}
+.sk-lbl.g { color: var(--ink3); }
+.sk-lbl.o { color: #a05800; }
+
+.tag {
+  display: inline-block;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9.5px; letter-spacing: .5px;
+  padding: 2px 9px; margin: 2px 2px 0 0;
+  border-radius: 2px;
+}
+.tag-h {
+  background: var(--bg-card2);
+  border: 1px solid var(--copper-faint);
+  color: var(--ink2);
+}
+.tag-s {
+  background: #fdf5ec;
+  border: 1px solid #f0d0a0;
+  color: #885500;
+}
+.tag-led {
+  background: var(--led-bg);
+  border: 1px solid var(--led-border);
+  color: var(--led-dim);
+}
+
+/* ══════════════════════════════
+   PROJECTS
+══════════════════════════════ */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px; margin-bottom: 48px;
+}
+.proj-card {
+  background: var(--bg-card);
+  border: 1px solid var(--copper-faint);
+  border-radius: 2px; padding: 16px 18px;
+  position: relative; overflow: hidden;
+}
+/* top trace stripe */
+.proj-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--copper);
+}
+.proj-card.acc::before { background: var(--led); }
+/* corner notch */
+.proj-card::after {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 14px; height: 14px;
+  background: var(--bg-page);
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  border-left: 1px solid var(--copper-faint);
+  border-bottom: 1px solid var(--copper-faint);
+}
+.proj-card.acc::after {
+  border-color: var(--led-border);
+}
+
+/* ── HOVER GLOW on project cards ── */
+.proj-card {
+  transition: box-shadow .3s ease, border-color .3s ease;
+  cursor: default;
+}
+.proj-card:hover {
+  border-color: var(--copper-dim);
+  box-shadow:
+    0 0 0 1.5px var(--copper),
+    0 0 12px rgba(45,128,80,.35),
+    0 0 28px rgba(45,128,80,.15);
+  animation: border-energy-green .8s ease-in-out infinite alternate;
+}
+.proj-card.acc:hover {
+  border-color: var(--led-border);
+  box-shadow:
+    0 0 0 1.5px var(--led),
+    0 0 14px rgba(232,92,0,.45),
+    0 0 32px rgba(232,92,0,.2);
+  animation: border-energy-orange .8s ease-in-out infinite alternate;
+}
+@keyframes border-energy-green {
+  from { box-shadow: 0 0 0 1.5px var(--copper), 0 0 10px rgba(45,128,80,.3), 0 0 22px rgba(45,128,80,.12); }
+  to   { box-shadow: 0 0 0 2px var(--copper), 0 0 18px rgba(45,128,80,.55), 0 0 38px rgba(45,128,80,.22); }
+}
+@keyframes border-energy-orange {
+  from { box-shadow: 0 0 0 1.5px var(--led), 0 0 12px rgba(232,92,0,.4), 0 0 26px rgba(232,92,0,.16); }
+  to   { box-shadow: 0 0 0 2px var(--led), 0 0 22px rgba(232,92,0,.7), 0 0 44px rgba(232,92,0,.28); }
+}
+.proj-name {
+  font-family: 'Orbitron', monospace;
+  font-size: 11px; font-weight: 700;
+  color: var(--ink); letter-spacing: 1px; margin-bottom: 8px;
+}
+.proj-card.acc .proj-name { color: var(--led-dim); }
+.proj-desc {
+  font-size: 10.5px; color: var(--ink2); line-height: 1.8;
+  margin-bottom: 10px;
+}
+
+/* ══════════════════════════════
+   SKILLS OVERVIEW
+══════════════════════════════ */
+.skills-ov {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px; margin-bottom: 16px;
+}
+.skills-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--copper-faint);
+  border-radius: 2px; padding: 15px 18px;
+  position: relative;
+}
+.skills-panel::before {
+  content: '';
+  position: absolute; left: 0; top: 10px; bottom: 10px; width: 3px;
+  background: var(--copper);
+  border-radius: 0 2px 2px 0;
+}
+
+/* ── HOVER GLOW on skills panels ── */
+.skills-panel {
+  transition: box-shadow .3s ease, border-color .3s ease;
+  cursor: default;
+}
+.skills-panel:hover {
+  border-color: var(--copper-dim);
+  animation: border-energy-green .8s ease-in-out infinite alternate;
+}
+/* second skills panel (soft skills = amber) */
+.skills-panel:nth-child(2):hover {
+  border-color: var(--led-border);
+  animation: border-energy-orange .8s ease-in-out infinite alternate;
+}
+
+/* ══════════════════════════════
+   DIVIDER (PCB trace style)
+══════════════════════════════ */
+.div {
+  height: 1px;
+  background: repeating-linear-gradient(90deg,
+    var(--copper-faint) 0, var(--copper-faint) 16px,
+    transparent 16px, transparent 22px
+  );
+  margin: 36px 0;
+}
+
+/* ══════════════════════════════
+   FOOTER
+══════════════════════════════ */
+.footer {
+  font-size: 8px; letter-spacing: 3px; color: var(--copper-dim);
+  text-align: right; margin-top: 48px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--copper-faint);
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════
+   LED ANIMATIONS
+══════════════════════════════ */
+@keyframes led-pulse {
+  0%,100% { box-shadow: 0 0 0 1px var(--led-border), 0 0 10px rgba(232,92,0,.45), 0 0 24px rgba(232,92,0,.18); }
+  50%      { box-shadow: 0 0 0 1px var(--led-border), 0 0 20px rgba(232,92,0,.75), 0 0 44px rgba(232,92,0,.32); }
+}
+.node-row.lit .thpad { animation: led-pulse 2.2s ease-in-out infinite; }
+
+@keyframes card-glow {
+  0%,100% { box-shadow: inset 0 0 40px rgba(232,92,0,.04), 0 0 12px rgba(232,92,0,.06); }
+  50%      { box-shadow: inset 0 0 40px rgba(232,92,0,.08), 0 0 24px rgba(232,92,0,.14); }
+}
+.node-row.lit .chip { animation: card-glow 2.2s ease-in-out infinite; }
+
+@media(max-width:600px){
+  .pcb-page { padding: 24px 14px 64px; }
+  .header { gap: 16px; }
+  .avatar-wrap { width: 80px; height: 80px; }
+  .avatar { width: 64px; height: 64px; }
+  .node-left { width: 64px; }
+  .h-trace { width: 22px; }
+  .chip-pins { left: -10px; }
+  .pin { width: 9px; }
+}
