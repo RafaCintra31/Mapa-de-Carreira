@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa de Carreira — Rafaella Cintra</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="pcb-page">
+<div class="page">
+
+  <!-- ══ HEADER ══ -->
+  <div class="header">
+    <div class="avatar-wrap">
+      <img class="avatar" src="imagens/Foto_rafa.jpeg" alt="Rafaella Cintra">
+    </div>
+    <div class="header-info">
+      <div class="h-name" id="h-name">RAFAELLA <span class="acc">CINTRA</span></div>
+      <div class="h-role">Ciências da Computação · Robótica · Automação</div>
+      <div class="links">
+        <a href="https://github.com/RafaCintra31" class="link-btn"><i class="ti ti-brand-github"></i> GitHub</a>
+        <a href="https://www.linkedin.com/in/rafaella-cintra" class="link-btn"><i class="ti ti-brand-linkedin"></i> LinkedIn</a>
+        <a href="mailto:rafacintra.ti@gmail.com" class="link-btn"><i class="ti ti-mail"></i> E-mail</a>
+        <a href="imagens/Currículo_Rafaella_Cintra.pdf" class="link-btn" target="_blank"><i class="ti ti-file-text"></i> Currículo</a>
+      </div>
+    </div>
+    
+    <canvas id="energy-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:10;"></canvas>
+  </div>
+  <div class="sec"><span class="pad-dot"></span>Sobre Mim</div>
+  <div class="sobre">
+    Estudante de Ciências da Computação apaixonada por programação — descobri que a tecnologia une tudo que amo: praticidade, resultado rápido e criação real. <br/> No Instituto Proa, desenvolvi projetos de impacto social e estudo eletrônica para entender como robôs ganham vida.
+  </div>
+
+  <!-- ══ CIRCUIT TIMELINE ══ -->
+  <div class="sec"><span class="pad-dot"></span>Trajetória </div>
+
+  <div class="circuit">
+    <!-- VERTICAL COPPER TRACE -->
+    <div class="v-trace"></div>
+
+    <!-- ── NÍVEL 01 ── -->
+    <div class="node-row active">
+      <div class="node-left">
+        <div class="thpad"></div>
+        <div class="h-trace"></div>
+      </div>
+      <div class="chip">
+        <div class="notch"></div>
+        <div class="chip-pins">
+          <div class="pin"></div><div class="pin"></div>
+          <div class="pin"></div><div class="pin"></div>
+        </div>
+        <div class="chip-title">Estagiária / Técnica em Automação</div>
+        <div class="chip-desc">Suporte a sistemas de controle, programação básica de PLCs, testes de sensores e atuadores. Primeiros contatos com chão de fábrica e robótica industrial.</div>
+        <div class="chip-skills">
+          <div class="sk-col">
+            <div class="sk-lbl g">Hard skills</div>
+            <span class="tag tag-h">PLC</span>
+            <span class="tag tag-h">Sensores</span>
+            <span class="tag tag-h">Python básico</span>
+            <span class="tag tag-h">Eletrônica</span>
+            <span class="tag tag-h">Suporte técnico</span>
+          </div>
+          <div class="sk-col">
+            <div class="sk-lbl o">Soft skills</div>
+            <span class="tag tag-s">Curiosidade</span>
+            <span class="tag tag-s">Atenção ao detalhe</span>
+            <span class="tag tag-s">Aprendizado rápido</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── NÍVEL 02 ── -->
+    <div class="node-row active">
+      <div class="node-left">
+        <div class="thpad"></div>
+        <div class="h-trace"></div>
+      </div>
+      <div class="chip">
+        <div class="notch"></div>
+        <div class="chip-pins">
+          <div class="pin"></div><div class="pin"></div>
+          <div class="pin"></div><div class="pin"></div>
+        </div>
+        <div class="chip-title">Desenvolvedora de Sistemas Embarcados</div>
+        <div class="chip-desc">Firmware para robôs móveis, integração de hardware e software, microcontroladores e protocolos industriais. A programação e a eletrônica finalmente se encontram na mesma placa.</div>
+        <div class="chip-skills">
+          <div class="sk-col">
+            <div class="sk-lbl g">Hard skills</div>
+            <span class="tag tag-h">C / C++</span>
+            <span class="tag tag-h">Firmware</span>
+            <span class="tag tag-h">Embarcados</span>
+            <span class="tag tag-h">ROS</span>
+            <span class="tag tag-h">IoT</span>
+            <span class="tag tag-h">Arduino / ESP32</span>
+          </div>
+          <div class="sk-col">
+            <div class="sk-lbl o">Soft skills</div>
+            <span class="tag tag-s">Resolução prática</span>
+            <span class="tag tag-s">Pensamento sistêmico</span>
+            <span class="tag tag-s">Persistência</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── NÍVEL 03 ── -->
+    <div class="node-row active">
+      <div class="node-left">
+        <div class="thpad"></div>
+        <div class="h-trace"></div>
+      </div>
+      <div class="chip">
+        <div class="notch"></div>
+        <div class="chip-pins">
+          <div class="pin"></div><div class="pin"></div>
+          <div class="pin"></div><div class="pin"></div>
+        </div>
+        <div class="chip-title">Engenheira de Robótica</div>
+        <div class="chip-desc">Sistemas robóticos completos, visão computacional, IA embarcada e cinemática de robôs. Liderança técnica de equipes pequenas — chip de maior complexidade na trilha.</div>
+        <div class="chip-skills">
+          <div class="sk-col">
+            <div class="sk-lbl g">Hard skills</div>
+            <span class="tag tag-h">Visão computacional</span>
+            <span class="tag tag-h">IA embarcada</span>
+            <span class="tag tag-h">ROS2</span>
+            <span class="tag tag-h">Cinemática</span>
+            <span class="tag tag-h">CAD</span>
+            <span class="tag tag-h">MATLAB</span>
+          </div>
+          <div class="sk-col">
+            <div class="sk-lbl o">Soft skills</div>
+            <span class="tag tag-s">Liderança técnica</span>
+            <span class="tag tag-s">Comunicação técnica</span>
+            <span class="tag tag-s">Criatividade aplicada</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── NÍVEL 04 ── -->
+    <div class="node-row active">
+      <div class="node-left">
+        <div class="thpad"></div>
+        <div class="h-trace"></div>
+      </div>
+      <div class="chip">
+        <div class="notch"></div>
+        <div class="chip-pins">
+          <div class="pin"></div><div class="pin"></div>
+          <div class="pin"></div><div class="pin"></div>
+        </div>
+        <div class="chip-title">Engenheira Sênior — Automação Veicular</div>
+        <div class="chip-desc">Stacks de direção autônoma, fusão de sensores — LiDAR, câmera e radar — e arquitetura de software embarcado. Onde programação, robótica e impacto real se juntam em alta velocidade.</div>
+        <div class="chip-skills">
+          <div class="sk-col">
+            <div class="sk-lbl g">Hard skills</div>
+            <span class="tag tag-h">ADAS</span>
+            <span class="tag tag-h">LiDAR</span>
+            <span class="tag tag-h">Fusão de sensores</span>
+            <span class="tag tag-h">Safety systems</span>
+            <span class="tag tag-h">Arquitetura embarcada</span>
+          </div>
+          <div class="sk-col">
+            <div class="sk-lbl o">Soft skills</div>
+            <span class="tag tag-s">Trabalho em equipe</span>
+            <span class="tag tag-s">Tomada de decisão</span>
+            <span class="tag tag-s">Visão de produto</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── NÍVEL 05 ── -->
+    <div class="node-row active">
+      <div class="node-left">
+        <div class="thpad"></div>
+        <div class="h-trace"></div>
+      </div>
+      <div class="chip">
+        <div class="notch"></div>
+        <div class="chip-pins">
+          <div class="pin"></div><div class="pin"></div>
+          <div class="pin"></div><div class="pin"></div>
+          <div class="pin"></div>
+        </div>
+        <div class="chip-title">Head / Principal Engineer — Global Robotics</div>
+        <div class="chip-desc">Liderança técnica global em robótica e automação avançada. Referência em sistemas autônomos — robótica industrial, veículos e plataformas de mobilidade. Tesla, Boston Dynamics, ABB, KUKA ou Embraer.</div>
+        <div class="chip-skills">
+          <div class="sk-col">
+            <div class="sk-lbl g">Hard skills</div>
+            <span class="tag tag-h">Arquitetura de sistemas</span>
+            <span class="tag tag-h">R&amp;D global</span>
+            <span class="tag tag-h">IA avançada</span>
+            <span class="tag tag-h">Mobilidade autônoma</span>
+            <span class="tag tag-h">Gestão de roadmap</span>
+          </div>
+          <div class="sk-col">
+            <div class="sk-lbl o">Soft skills</div>
+            <span class="tag tag-s">Liderança técnica</span>
+            <span class="tag tag-s">Influência global</span>
+            <span class="tag tag-s">Mentoria de equipes</span>
+            <span class="tag tag-s">Visão de longo prazo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── NÍVEL 06 · LED ACESO ── -->
+    <div class="node-row lit">
+      <div class="node-left">
+        <div class="thpad"></div>
+        <div class="h-trace"></div>
+      </div>
+      <div class="chip">
+        <div class="notch"></div>
+        <div class="chip-pins">
+          <div class="pin"></div><div class="pin"></div>
+          <div class="pin"></div><div class="pin"></div>
+          <div class="pin"></div><div class="pin"></div>
+        </div>
+        <div class="chip-title">Diretora de Engenharia e Robótica</div>
+        <div class="chip-desc">Responsável pela visão estratégica e técnica de toda a área de robótica e engenharia: produtos, times e parcerias globais. A engenheira que une programação, robótica e impacto humano em escala planetária.</div>
+        <div class="chip-skills">
+          <div class="sk-col">
+            <div class="sk-lbl g">Hard skills</div>
+            <span class="tag tag-led">Estratégia tecnológica</span>
+            <span class="tag tag-led">Gestão de P&amp;D</span>
+            <span class="tag tag-led">Inovação em robótica</span>
+            <span class="tag tag-led">Parcerias globais</span>
+            <span class="tag tag-led">Governança técnica</span>
+          </div>
+          <div class="sk-col">
+            <div class="sk-lbl o">Soft skills</div>
+            <span class="tag tag-s">Liderança executiva</span>
+            <span class="tag tag-s">Pensamento estratégico</span>
+            <span class="tag tag-s">Comunicação C-level</span>
+            <span class="tag tag-s">Inspiração de times</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ PROJETOS ══ -->
+  <div class="div"></div>
+  <div class="sec"><span class="pad-dot"></span>Projetos de impacto</div>
+  <div class="projects">
+    <div class="proj-card">
+      <div class="proj-name">ENTRE SINAIS</div>
+      <div class="proj-desc">Software de comunicação entre pessoas com deficiência auditiva e ouvintes — tecnologia que derruba barreiras e amplia a inclusão na prática.</div>
+      <span class="tag tag-h">Acessibilidade</span>
+      <span class="tag tag-h">Inclusão</span>
+      <span class="tag tag-h">Software</span>
+    </div>
+    <div class="proj-card acc">
+      <div class="proj-name">EVER RISE</div>
+      <div class="proj-desc">Desenvolvimento de um dispositivo autônomo para transferência de pacientes com mobilidade reduzida, controlado via interface web por smartphone ou computador.</div>
+      <span class="tag tag-led">Robótica</span>
+      <span class="tag tag-led">Autonomia</span>
+      <span class="tag tag-h">IoT</span>
+      <span class="tag tag-h">Hardware</span>
+    </div>
+  </div>
+
+  <!-- ══ SKILLS HOJE ══ -->
+  <div class="div"></div>
+  <div class="skills-ov">
+    <div class="skills-panel">
+      <div class="sk-lbl g" style="margin-bottom:10px;">Hard skills</div>
+      <span class="tag tag-h">Programação</span>
+      <span class="tag tag-h">Eletrônica</span>
+      <span class="tag tag-h">Python</span>
+      <span class="tag tag-h">C++</span>
+      <span class="tag tag-h">Sistemas embarcados</span>
+      <span class="tag tag-h">Prototipagem</span>
+      <span class="tag tag-h">Banco de dados</span>
+      <span class="tag tag-h">IoT</span>
+    </div>
+    <div class="skills-panel">
+      <div class="sk-lbl o" style="margin-bottom:10px;">Soft skills</div>
+      <span class="tag tag-s">Pensamento sistêmico</span>
+      <span class="tag tag-s">Resolução prática</span>
+      <span class="tag tag-s">Aprendizado rápido</span>
+      <span class="tag tag-s">Trabalho em equipe</span>
+      <span class="tag tag-s">Criatividade aplicada</span>
+      <span class="tag tag-s">Comunicação técnica</span>
+    </div>
+  </div>
+
+  <div class="footer">Rev 2026.1 · Rafaella Cintra · Instituto Proa · PCB Edition</div>
+
+</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
